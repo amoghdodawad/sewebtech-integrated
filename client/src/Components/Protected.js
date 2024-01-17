@@ -8,7 +8,7 @@ function Protected({ isLoggedIn, children, next }){
       search : '?next='+next
     }} replace />;
   }
-  if(next === 'admin' && localStorage.getItem('role') !== 'admin'){
+  if((next === 'admin' || next === 'AllProfiles' || next === 'AddProfiles') && localStorage.getItem('role') !== 'admin'){
     toast.error('You are not logged in as admin', {
       duration : 2000
     });

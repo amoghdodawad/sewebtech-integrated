@@ -1,16 +1,16 @@
 {
   "files": {
     "main.css": "/static/css/main.50120d30.css",
-    "main.js": "/static/js/main.fd2fa96a.js",
+    "main.js": "/static/js/main.2c562962.js",
     "static/js/787.d5fa4d18.chunk.js": "/static/js/787.d5fa4d18.chunk.js",
     "static/media/KLETechBackground.jpg": "/static/media/KLETechBackground.33128dca99c6d89ec063.jpg",
     "index.html": "/index.html",
     "main.50120d30.css.map": "/static/css/main.50120d30.css.map",
-    "main.fd2fa96a.js.map": "/static/js/main.fd2fa96a.js.map",
+    "main.2c562962.js.map": "/static/js/main.2c562962.js.map",
     "787.d5fa4d18.chunk.js.map": "/static/js/787.d5fa4d18.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.50120d30.css",
-    "static/js/main.fd2fa96a.js"
+    "static/js/main.2c562962.js"
   ]
 }
