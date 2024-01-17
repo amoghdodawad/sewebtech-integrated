@@ -1,0 +1,78 @@
+/* profile.css */
+  
+  .container {
+    width: 90%;
+    margin: 0 auto;
+  }
+  
+  h1 {
+    color: rgb(229,49,85);
+  }
+  
+  .personal-details {
+    margin: 10px; 
+  }
+
+  
+  
+  
+  /* 
+    The CSS rule below was commented by the integration team because it affects all the divs
+    of entire modules. Please specify the classnames of this div's where you want this CSS
+    rule to be applied and then uncomment it.
+  */
+  /* div {
+    margin-bottom: 15px;
+  } */
+  
+  strong {
+    margin-right: 10px;
+  }
+
+  /* body {
+    font-family: 'Poppins';
+  }
+
+  h1 {
+    color: rgb(229,49,85);
+  }
+  
+  .personal-details {
+    margin: 10px; 
+  }
+
+  div {
+    margin-bottom: 8px;
+  }
+  
+  strong {
+    margin-right: 10px;
+  }
+
+.container {
+    width: 90%;
+    margin: 0 auto;
+}
+
+.main-heading {
+    color: rgb(229, 49, 85);
+    font-family: 'Poppins', Arial, sans-serif;
+}
+.divider {
+    border: 1px solid #ddd;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.edit-button,
+.save-button {
+    padding: 5px 10px;
+    margin-right: 10px;
+    cursor: pointer;
+} */
+
+
+
+
+  
+  

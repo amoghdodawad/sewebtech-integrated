@@ -1,0 +1,49 @@
+/* WelcomePage.css */
+.welcomePageContainer {
+  background: white;
+  border: 2px solid rgb(241, 84, 116);
+  color: rgb(229, 49, 85);
+  font-size: 17px;
+  padding: 25px;
+  border-radius: 12px;
+  margin-bottom: 20px;
+  font-family: 'Poppins', sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 2px 2px 5px rgba(229, 49, 85);
+}
+
+.buttonContainer {
+  display: flex;
+  justify-content: space-between;
+}
+
+.linkStyle {
+  text-decoration: none;
+}
+
+.buttonBase, .addButton {
+  background-color: white;
+  color: rgb(229, 49, 85);
+  font-family: 'Poppins', sans-serif;
+  font-weight: bold;
+  border: 2px solid rgb(241, 84, 116);
+  display: flex;
+  padding: 10px 15px;
+  margin: 20px;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background-color 0.3s, color 0.3s;
+  box-shadow: 2px 2px 5px rgba(229, 49, 85);
+}
+
+.addButton {
+  padding: 10px 29px;
+}
+
+.buttonBase:hover, .addButton:hover {
+  background-color: rgb(241, 84, 116);
+  color: white;
+  box-shadow: 2px 2px 2px rgba(229, 49, 85);
+}

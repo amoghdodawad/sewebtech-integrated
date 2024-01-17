@@ -1,0 +1,47 @@
+/* SearchComponent.css */
+
+.form-container {
+    margin-top: 20px;
+  }
+  
+  .form-label {
+    font-weight: bold;
+  }
+  
+  .form-input {
+    font-weight: bold;
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+  
+  .form-button {
+    font-weight: bold;
+  }
+  
+  .result-container {
+    margin-top: 20px;
+  }
+  
+  .result-heading {
+    text-align: center;
+  }
+  
+  .result-table {
+    width: 100%;
+    border: 2px solid black;
+  }
+  
+  .result-table th,
+  .result-table td {
+    border: 1px solid black;
+    padding: 4px;
+  }
+  
+  .result-table th {
+    font-weight: bold;
+  }
+  
+  .result-table td {
+    text-align: center;
+  }
+  

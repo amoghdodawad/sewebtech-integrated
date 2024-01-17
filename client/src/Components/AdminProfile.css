@@ -1,0 +1,100 @@
+/* @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap'); */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #f8f9fa;
+    color: black;
+}
+
+.admin-container {
+    text-align: center;
+    padding: 40px;
+    box-sizing: border-box;
+}
+
+.admin-info {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.admin-details {
+    text-align: left;
+    margin-left: 20px;
+}
+
+.designation {
+    font-style: italic;
+}
+
+.qualification {
+    font-size: 14px;
+    color: #616060;
+}
+
+.module-links {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    background: linear-gradient(135deg, #fcfcfd, #fffaec);
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s;
+}
+
+.module-links:hover {
+    transform: scale(1.04);
+}
+
+.module-link {
+    width: 45%;
+    margin: 10px;
+    text-decoration: none;
+    list-style-type: none;
+}
+
+.module-link button {
+    width: 100%;
+    padding: 15px;
+    border: 2px solid rgb(241, 84, 116);
+    border-radius: 10px;
+    color: rgb(229, 49, 85);
+    font-size: 24px;
+    background-color: #fcfcfd;
+    transition: background-color 0.2s, color 0.2s, transform 0.2s;
+}
+
+.module-link button p {
+    font-size: 15px;
+    margin: 10px 0 0 0;
+    color: #696666;
+    font-style: italic;
+}
+
+
+.module-link button:hover {
+    background-color: #e53170;
+    color: white;
+    transform: scale(1.05);
+}
+
+.module-link button:hover p {
+    color: white;
+}
+
+button {
+    font-family: 'Poppins';
+}
+
+@media screen and (max-width: 640px) {
+    .module-link {
+        width: 90%;
+    }
+}

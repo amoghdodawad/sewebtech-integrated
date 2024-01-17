@@ -1,0 +1,63 @@
+.FacultyCard {
+    padding: 20px;
+    border: 2px solid rgb(241, 84, 116);
+    margin: 10px;
+    border-radius: 5px;
+    max-width: 400px;
+}
+
+.FacultyView {
+    display: flex;
+}
+
+.FacultyCard img {
+    width: 100px;
+    height: 100px;
+    margin-right: 10px;
+    border: 2px solid rgb(241, 84, 116);
+    border-radius: 5px;
+}
+
+.CardInputs input {
+    display: inline-block;
+    margin-bottom: 4px;
+    border: none;
+    border-radius: 3px;
+}
+
+.CardInputs label {
+    display: inline-block;
+    color: rgb(229, 49, 85);
+    width: 60px;
+}
+
+.CardInputs input:focus { 
+    outline: none !important;
+}
+
+.CardInputs input[type='radio']:checked {
+    accent-color: rgb(241, 84, 116);
+}
+
+.CardInputs input[type='radio'] {
+    margin-bottom: 8px;
+}
+
+
+.FacultyOptions button {
+    background-color: white;
+    color: rgb(241, 84, 116);
+    width: 100px;
+    margin-right: 10px;
+    height: 28px;
+    cursor: pointer;
+    border-radius: 5px;
+    border: 2px solid rgb(241, 84, 116);
+    transition: all ease 1s;
+}
+
+.FacultyOptions button:hover {
+    background-color: rgb(241, 84, 116);
+    color: white;
+    transition: all ease 1s;
+}

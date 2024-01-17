@@ -1,0 +1,33 @@
+.FacultyTitle {
+    text-align: center;
+    color: rgb(241, 84, 116);
+}
+
+.FacultyAdmin {
+    display: inline-flex;
+    width: 100%;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: center;
+}
+
+.FacultySearch {
+    margin-top: 30px;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.FacultySearch input {
+    border: 2px solid rgb(241, 84, 116);
+    color: rgb(241, 84, 116);
+    width: 500px;
+    border-radius: 5px;
+    max-width: 90%;
+    padding-left: 10px;
+    height: 30px;
+}
+
+.FacultySearch input:focus {
+    outline: none !important;
+}

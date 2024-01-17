@@ -1,0 +1,193 @@
+.login-container-login {
+    width: 38vw;
+    /* height: 100vh; */
+    /* background-color: black; */
+    display: flex;
+    /* margin-right: 3rem; */
+    /* flex-direction: column; */
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg,#fcfcfd,#fffaec);
+}
+
+.sign-in {
+    color: rgb(229,49,85);
+    font-size:xx-large;
+    font-weight: bolder;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    /* margin: 4rem; */
+    width: 35vw;
+    border: 2px solid rgb(241,84,116);
+    /* padding-left: 30px;
+    padding-right: 30px; */
+    padding: 1.5rem;
+    border-radius: 5px;
+    background: linear-gradient(135deg,#fcfcfd,#fffaec);
+    box-shadow: 0.2rem 0.2rem 0.3rem rgba(0,0,0,0.3);
+}
+
+input{
+    font-family: 'Poppins';
+    padding: 0.4rem;
+    font-size: medium;
+    font-weight: 500;
+}
+
+.input-container {
+    display: flex;
+    flex-direction: column;
+    font-family: 'Poppins';
+}
+
+.input {
+    height: 40px;
+    margin-top: 1rem;
+    /* margin-bottom: 1rem; */
+    /* margin: 1rem; */
+    background: linear-gradient(135deg,#fffaec,#fcf6e4);
+    border: 2px solid rgb(241,84,116);
+    color: rgb(229,49,85);
+    border-radius: 0.3rem;
+}
+
+.input:active {
+    border: 2px solid rgb(241,84,116);
+}
+
+.checkbox {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 1rem;
+}
+
+.error {
+    display: flex;
+    justify-content: center;
+}
+
+.submit {
+    height: 35px;
+    font-family: 'Poppins';
+    font-weight: 600;
+    border: 2px solid rgb(241,84,116);
+    margin-top: 0.8rem;
+    margin-bottom: 0.4rem;
+    background: linear-gradient(135deg,#fffaec,#fcf6e4);
+    color: rgb(229,49,85);
+    border-radius: 0.3rem;
+    transition: background 0.2s, transform 0.2s;
+}
+
+#admin-input {
+    color: rgb(229,49,85);
+    /* margin-top: 0.4rem; */
+    margin-left: 0.4rem;
+}
+
+.submit:hover {
+    cursor: pointer;
+    background: rgba(229,49,85,0.92);
+    color: white;
+    transform: scale(1.05);
+}
+
+.button {
+    display: flex;
+    justify-content: center;
+    font-weight: 500;
+    margin-top: 0.4rem;
+    color: rgb(229,49,85);
+}
+
+.checkbox {
+    background: linear-gradient(135deg,#fcfcfd,#fffaec);
+}
+
+.button:hover {
+    cursor: pointer;
+}
+
+.home-container-login {
+    display: flex;
+    /* flex-wrap: wrap; */
+    justify-content: space-between;
+    /* margin-top: 4rem; */
+}
+
+.kletech-background-container {
+    width: 60vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#kletech-background {
+    height: 50vh;
+    width: 50vw;
+    border-radius: 0.2rem;
+}
+
+.login-top-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* flex-wrap: wrap; */
+    margin-top: 4rem;
+    margin-right: 2rem;
+}
+
+@media screen and (max-width: 640px) {
+    .login-top-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .kletech-background-container {
+        width: 97vw;
+        height: 44vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 0.3rem;
+    }
+
+    #kletech-background {
+        height: 40vh;
+        width: 95vw;
+        border-radius: 0.2rem;
+    }
+
+    .login-container-login {
+        width: 80vw;
+        display: flex;
+        margin-left: 1rem;
+        /* flex-direction: column; */
+        justify-content: center;
+        align-items: center;
+        background: linear-gradient(135deg,#fcfcfd,#fffaec);
+    }
+
+    .home-container-login{
+        margin-left: 2rem;
+    }
+
+    .form {
+        display: flex;
+        flex-direction: column;
+        /* margin: 1rem; */
+        width: 70vw;
+        border: 2px solid rgb(241,84,116);
+        padding-left: 30px;
+        padding-right: 30px;
+        border-radius: 5px;
+        background: linear-gradient(135deg,#fcfcfd,#fffaec);
+        box-shadow: 0.2rem 0.2rem 0.3rem rgba(0,0,0,0.3);
+    }
+}

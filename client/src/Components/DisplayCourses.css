@@ -1,0 +1,43 @@
+/* DisplayCourses.css */
+
+.display-courses-container {
+    font-family: "Poppins";
+  }
+  
+  .display-courses-container h2 {
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  
+  .display-courses-table {
+    width: 100%;
+    border: 2px solid black;
+    margin-bottom: 20px;
+  }
+  
+  .display-courses-table th,
+  .display-courses-table td {
+    border: 1px solid black;
+    padding: 4px;
+    text-align: center;
+  }
+  
+  .edit-row-input {
+    width: 100%;
+    padding: 4px;
+    box-sizing: border-box;
+  }
+  
+  .edit-row-button {
+    margin-right: 4px;
+    background-color: white;
+    font-weight: bold;
+    border-radius: 4px;
+  }
+  
+  .delete-row-button {
+    background-color: white;
+    font-weight: bold;
+    border-radius: 4px;
+  }
+  

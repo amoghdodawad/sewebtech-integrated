@@ -1,0 +1,159 @@
+/* styles.css */
+* {
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background: linear-gradient(135deg, #fcfcfd, #fffaec);
+}
+
+.table.table-stripped {
+    width: 80%;
+    margin: 0 auto;
+    border-collapse: collapse;
+}
+
+
+.table.table-stripped th,
+.table.table-stripped td {
+    padding: 15px;
+    text-align: center;
+    border: 1.5px solid black
+        /* Add border for better separation */
+}
+
+.Conference-input input {
+    margin-right: 10px;
+    height: 30px;
+    font-size: 20px;
+}
+
+#search {
+    margin-left: 160px;
+    margin-right: 10px;
+    height: 30px;
+    font-size: 20px;
+}
+
+.Conference-input {
+    margin: 10px auto;
+    /* Center the container and set auto margin for centering */
+    width: 60%;
+    /* Set the container width to 60% */
+    text-align: left;
+    /* Align text to the left */
+}
+
+.Conference-input label {
+    display: inline-block;
+    width: 30%;
+    /* Set the width for labels */
+    margin-right: 10px;
+    /* Add some spacing between label and input */
+}
+
+.Conference-input input {
+    width: 60%;
+    /* Set the width for inputs */
+    box-sizing: border-box;
+    margin-bottom: 10px;
+}
+
+.add-button {
+    width: 60%;
+    /* Set the width for the button */
+    margin-top: 10px;
+}
+
+
+.table.table-stripped th {
+    font-size: 20px;
+    background-color: rgba(233, 55, 91, 0.92);
+}
+
+.table.table-stripped td {
+    font-size: 18px;
+}
+
+.Conference-title {
+    text-align: left;
+    margin-left: 4cm;
+    font-size: 275%;
+}
+
+.add-button,
+.delete-button,
+.Sorting-button {
+    width: 90%;
+    font-size: 18px;
+    /* Adjusted font size */
+    background-color: rgba(233, 55, 91, 0.92);
+    color: white;
+    border: none;
+    border-radius: 2px;
+    cursor: pointer;
+    margin: 5px;
+}
+
+
+.table.table-stripped th,
+.table.table-stripped td {
+    border: 1.5px solid #000;
+    /* Black borders for cells */
+    padding: 12px;
+    text-align: left;
+}
+
+.table tbody tr:nth-child(even) {
+    background-color: white;
+    /* Light orange for even rows */
+}
+
+.table tbody tr:nth-child(odd) {
+    background-color: white;
+    /* Lighter orange for odd rows */
+}
+
+.table tbody tr:hover {
+    background-color: whitesmoke;
+    /* Darker orange on hover */
+}
+
+/* Add Font Awesome for icons */
+.button-icon {
+    margin-right: 5px;
+}
+
+/* Media query for smaller screens */
+@media screen and (max-width: 768px) {
+
+    .table.table-stripped th,
+    .table.table-stripped td {
+        display: block;
+        width: 100%;
+        box-sizing: border-box;
+        border: none;
+        /* Remove border for better readability on smaller screens */
+    }
+
+    .table.table-stripped th {
+        text-align: center;
+    }
+}
+
+.Option-buttons {
+    width: 500px;
+    display: inline-flex;
+    justify-items: right;
+    margin-left: 17.9cm;
+    /* border: 1.5px solid #000;  */
+    /* align-items: end; */
+}
+
+.Sorting-button {
+    border: 1.5px solid #000;
+    /* margin-left: 10cm; */
+}
+
+/* Add Font Awesome CDN link in your HTML file */
+/* <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha384-GLhlTQ8iOymoqylz9+ldF4QssE4Ipkj8Tf5eIv4FkUnyJK70UZ+3uzybe00A2rR" crossorigin="anonymous"> */

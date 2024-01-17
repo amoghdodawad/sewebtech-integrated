@@ -1,0 +1,113 @@
+.navbar {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    /* justify-content: space-between; */
+    /* background: linear-gradient(135deg,#fcfcfd,#fffaec); */
+    /* border-bottom: 2px solid ; */
+    /* box-shadow: 0.2rem 0.2rem rgba(0,0,0,0.1); */
+}
+
+.upper-box {
+    width: 100%;
+    background: linear-gradient(135deg,#fcfcfd,#fffaec);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    border-radius: 1rem;
+    box-shadow: 0.2rem 0.2rem 0.5rem rgba(0,0,0,0.3);
+}
+
+.lower-box {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    background: linear-gradient(135deg,#fcfcfd,#fffaec);
+    flex-wrap: wrap;
+    border-radius: 1rem;
+    box-shadow: 0.2rem 0.2rem 0.5rem rgba(0,0,0,0.3);
+    /* align-items:flex-end; */
+    margin-top: 0.2rem;
+    width: 95%;
+}
+
+.links {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* margin: 0.4rem 0.4rem 1.6rem 1.6rem; */
+}
+
+.items {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* margin: 1rem; */
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    border-radius: 1.5rem;
+    margin: 0.5rem;
+    /* color: black;
+    background: #fcfcfd; */
+    transition: background 0.2s, color 0.25s;
+}
+.home {
+    margin-left: 0.9rem;
+}
+
+.items:hover {
+    cursor: pointer;
+    background: rgba(229,49,85,0.92);
+    /* background: linear-gradient(135deg,rgba(229,49,85,0.92),rgba(173, 10, 42, 0.92)); */
+    color: white;
+}
+
+.logo {
+    /* margin-top: 1rem; */
+    margin-left: 2rem;
+    /* margin-right: 2rem; */
+    display: flex;
+    /* flex-direction: row; */
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.login{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0.5rem;
+    padding: 0.5rem 1.5rem 0.5rem 1.5rem;
+    border-radius: 2.5rem;
+    /* height: 80%; */
+    transition: background 0.2s, color 0.2s;
+}
+
+.login:hover {
+    cursor: pointer;
+    background: rgba(229,49,85,0.92);
+    color: white;
+}
+
+#img {
+    width: 4rem;
+    height: 4rem;
+}
+
+.faculty-management {
+    font-size: 1.2rem;
+    width: 10rem;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    font-size: larger;
+    font-weight: 600;
+    /* vertical-align: middle; */
+}
+

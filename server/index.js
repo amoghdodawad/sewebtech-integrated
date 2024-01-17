@@ -1,0 +1,468 @@
+const express = require('express');
+const { connectToDB } = require('./db/db.js');
+const cors = require('cors');
+const bodyParser = require('body-parser');
+const { userRouter } = require('./routes/auth.routes.js');
+const path = require('path');
+const mongoose = require('mongoose');
+const workshopRoutes = require('./routes/workshopRoutes');
+const { Users } = require('./models/models.js');
+const {
+    Faculty,
+    WorkExperience,
+    Courses,
+    PhDDetails,
+    ResearchStudents,
+    FacultyPhDResearchStudents,
+    Books,
+    BooksPublished,
+    Conferences,
+    Memberships,
+    Committees,
+    AttendedWorkshops,
+    ConductedWorkshops,
+    FundedProjects,
+    TrainingDevelopment,
+    Interests,
+    OtherInformation,
+} = require('./structure');
+
+const tables = {
+    'Users': Users,
+    'Faculty': Faculty,
+    'WorkExperience': WorkExperience,
+    'Courses': Courses,
+    'PhDDetails': PhDDetails,
+    'ResearchStudents': ResearchStudents,
+    'FacultyPhDResearchStudents': FacultyPhDResearchStudents,
+    'Books': Books,
+    'BooksPublished': BooksPublished,
+    'Conferences': Conferences,
+    'Memberships': Memberships,
+    'Committees': Committees,
+    'AttendedWorkshops': AttendedWorkshops,
+    'ConductedWorkshops': ConductedWorkshops,
+    'FundedProjects': FundedProjects,
+    'TrainingDevelopment': TrainingDevelopment,
+    'Interests': Interests,
+    'OtherInformation': OtherInformation
+}
+
+const successResponse = { "status": "success" };
+const failureResponse = { "status": "fail" };
+const notFoundResponse = { "status": "not found" };
+
+const app = express();
+
+const PORT = 8080;
+
+app.use(cors());
+app.use(bodyParser.json());
+app.use((req, res, next) => {
+    console.log(`${req.method} ${req.url}`);
+    next();
+});
+app.use('/api/auth', userRouter);
+app.use('/', express.static('build'));
+app.use('/workshops', workshopRoutes);
+
+for (let modelName in tables) {
+    let routeName = modelName.toLowerCase();
+
+    app.put(`/update/${routeName}/:keys/:values`, async (req, res) => {
+        try {
+            const keys = req.params.keys.split(',');
+            const values = req.params.values.split(',');
+            //console.log(req.body)
+
+            if (keys.length !== values.length) {
+                return res.status(400).send({ "error": "Number of keys and values should match" });
+            }
+
+            let query = {};
+            keys.forEach((key, index) => {
+                query[key] = values[index];
+            });
+
+            //console.log(query);
+
+            const updatedData = await tables[modelName].findOneAndUpdate(query, req.body);
+            //console.log(updatedData)
+            if (!updatedData) {
+                return res.status(404).send(notFoundResponse);
+            }
+            res.send(successResponse);
+        } catch (error) {
+            const err = failureResponse;
+            err.reason = error;
+            res.status(500).send(err);
+        }
+    });
+
+    app.delete(`/delete/${routeName}/:keys/:values`, async (req, res) => {
+        try {
+            const keys = req.params.keys.split(',');
+            const values = req.params.values.split(',');
+
+            if (keys.length !== values.length) {
+                return res.status(400).send({ "error": "Number of keys and values should match" });
+            }
+
+            let query = {};
+            keys.forEach((key, index) => {
+                query[key] = values[index];
+            });
+
+            const deletedData = await tables[modelName].deleteOne(query);
+            if (!deletedData.deletedCount) {
+                return res.status(404).send(notFoundResponse);
+            }
+            res.send(successResponse);
+        } catch (error) {
+            const err = failureResponse;
+            err.reason = error;
+            res.status(500).send(err);
+        }
+    });
+
+    app.get(`/fetch/${routeName}`, async (req, res) => {
+        try {
+            const allData = await tables[modelName].find({}, { password: 0 });
+            //console.log(allData);
+            res.json(allData);
+        } catch (error) {
+            const err = failureResponse;
+            err.reason = error;
+            res.status(500).send(err);
+        }
+    });
+
+    app.get(`/fetch/${routeName}/:keys/:values`, async (req, res) => {
+        try {
+            const keys = req.params.keys.split(',');
+            const values = req.params.values.split(',');
+            // console.log(keys);
+            // console.log(values);
+            if (keys.length !== values.length) {
+                return res.status(400).send({ "error": "Number of keys and values should match" });
+            }
+
+            let query = {};
+            keys.forEach((key, index) => {
+                query[key] = values[index];
+            });
+
+            const filteredData = await tables[modelName].find(query, { password: 0 });
+            // console.log('Filtered data');
+            // console.log(filteredData);
+            res.json(filteredData);
+        } catch (error) {
+            console.log(error);
+            const err = failureResponse;
+            err.reason = error;
+            res.status(500).send(err);
+        }
+    });
+
+    app.post(`/insert/${routeName}`, async (req, res) => {
+        try {
+            //console.log(req.body)
+            const newData = new tables[modelName](req.body);
+            //console.log(newData)
+            await newData.save();
+            res.send(successResponse);
+        } catch (error) {
+            const err = failureResponse;
+            err.reason = error;
+            res.status(500).send(err);
+        }
+    });
+}
+// Define the Course schema
+const courseSchema = new mongoose.Schema({
+    fId: {
+        type: Number,
+        default: 13,
+    },
+    courseName: String,
+    howManyTimes: Number,
+    courseCode: String,
+
+});
+
+// Create the Course model
+const Course = mongoose.model('courses', courseSchema);
+
+// Route to add courses
+app.post('/api/addCourse', async (req, res) => {
+    try {
+        const courses = req.body;
+
+        // Validate input (you can add more validation as needed)
+        if (courses.every(course => course.courseName && course.howManyTimes && course.courseCode)) {
+            // Save courses to MongoDB
+            const savedCourses = await Course.create(courses);
+
+            res.json({ success: true, data: savedCourses });
+        } else {
+            res.json({ success: false, message: 'Please fill in all fields.' });
+        }
+    } catch (error) {
+        console.error('Error:', error);
+        res.json({ success: false, message: 'An unexpected error occurred.' });
+    }
+});
+
+app.put('/api/updateCourse/:id/:code', async (req, res) => {
+    const { id, code } = req.params;
+    const { uname, uhmt, ucode } = req.body;
+    console.log(uname, uhmt, ucode)
+
+    try {
+        // Split the concatenated identifier to get id and courseCode
+        console.log(id, code)
+
+        // Find and update the course based on id and courseCode
+        const updatedCourse = await Course.findOneAndUpdate(
+            { fId: id, courseCode: code },
+            { courseName: uname, howManyTimes: uhmt, courseCode: ucode },
+            { new: true }
+        );
+
+        res.json({ success: true, data: updatedCourse });
+    } catch (error) {
+        console.error('Error updating course:', error);
+        res.json({ success: false, message: 'An unexpected error occurred.' });
+    }
+});
+
+app.post('/api/deleteCourse/:id/:code', async (req, res) => {
+    const id = parseInt(req.params.id);
+    const code = req.params.code;
+
+    // Find the index of the course in the array
+    try {
+        // Use async/await to make the code more readable
+        const result = await Course.deleteOne({ fId: id, courseCode: code });
+
+        // Check the result
+        if (result.deletedCount > 0) {
+            res.json({ success: true, data: "deleted" });
+        } else {
+            res.status(404).json({ success: false, message: 'Course not found.' });
+        }
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ success: false, message: 'Internal server error.' });
+    }
+
+});
+
+app.get('/api/getCourses', async (req, res) => {
+    const userFId = 13;
+    Course.find({ fId: userFId })
+        .then(courses => res.json(courses))
+        .catch(err => res.json(err))
+});
+
+app.get('/api/details/:fId', (req, res) => {
+    const userfId = req.params.fId;
+
+    // Check if fId exists in mock data
+    Course.find({ courseName: userfId })
+        .then(courses => res.json(courses))
+        .catch(err => res.json(err))
+});
+
+const ConferenceSchema = new mongoose.Schema({
+    emailId: {
+        type: String,
+        required: true,
+    },
+    id: {
+        type: String,
+        required: true,
+        unique: true,
+    },
+    title: {
+        type: String,
+        required: true,
+    },
+    details_of_conferences: {
+        type: String,
+        required: true,
+    },
+    year: {
+        type: String,
+        required: true,
+    },
+    Awards: {
+        type: String,
+    },
+});
+
+const Conference = mongoose.model('Conference', ConferenceSchema);
+async function updateConferenceById(id, updatedData) {
+    try {
+        const updatedConference = await Conference.findByIdAndUpdate(
+            id,
+            { $set: updatedData },
+            { new: true }
+        );
+
+        return updatedConference;
+    } catch (error) {
+        throw error;
+    }
+}
+
+async function deleteConferenceById(id) {
+    try {
+        console.log('Deleting conference with ID:', id);
+
+        const deletedConference = await Conference.findOneAndDelete({id:id});
+        console.log('Deleted conference:', deletedConference);
+
+        return deletedConference;
+    } catch (error) {
+        console.error('Error deleting data:', error);
+        throw error;
+    }
+}
+app.post('/test', async function (req, res) {
+    const { id, title, details_of_conferences, year, Awards } = req.body;
+    const emailId = 'user_email@example.com';
+
+    const newConference = new Conference({
+        emailId,
+        id,
+        title,
+        details_of_conferences,
+        year,
+        Awards,
+    });
+
+    try {
+        await newConference.save();
+        console.log('Conference saved successfully');
+        res.status(201).json({
+            message: 'Conference created successfully',
+        });
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({
+            message: 'Internal Server Error',
+        });
+    }
+});
+
+app.get('/test2', async function (req, res) {
+    const emailId = 'user_email@example.com';
+
+    try {
+        const response = await Conference.find({ emailId });
+        res.json(response);
+    } catch (error) {
+        console.error('Error fetching data:', error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+});
+
+app.get('/search', async function (req, res) {
+    const { query } = req.query;
+
+    try {
+        const response = await Conference.find({
+            $or: [
+                { title: { $regex: query, $options: 'i' } },
+                { details_of_conferences: { $regex: query, $options: 'i' } },
+                { year: { $regex: query, $options: 'i' } },
+                { Awards: { $regex: query, $options: 'i' } },
+            ],
+        });
+        res.json(response);
+    } catch (error) {
+        console.error('Error searching data:', error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+});
+
+app.delete('/delete/:id', async function (req, res) {
+    const id = req.params.id;
+    console.log(id);
+    try {
+        const deletedConference = await deleteConferenceById(id);
+        if (!deletedConference) {
+            return res.status(404).json({ message: 'Conference not found' });
+        }
+        console.log('Conference deleted successfully');
+        res.sendStatus(204);
+    } catch (error) {
+        console.error('Error deleting data:', error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+});
+
+app.put('/update/:id', async function (req, res) {
+    const id = req.params.id;
+    const updatedData = req.body; // Assuming the updated data is sent in the request body
+
+    try {
+        const updatedConference = await updateConferenceById(id, updatedData);
+        if (!updatedConference) {
+            return res.status(404).json({ message: 'Conference not found' });
+        }
+        console.log('Conference updated successfully');
+        res.status(200).json({
+            message: 'Conference updated successfully',
+            updatedConference,
+        });
+    } catch (error) {
+        console.error('Error updating data:', error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+});
+
+const phdSchema = new mongoose.Schema({
+    email : String,
+    Nameofresearch: String,
+    Topic: String,
+    date: String,
+    Nameofguide: String,
+    Status: String,
+  });
+  
+const PhdModel = mongoose.model('Phddetails', phdSchema);
+
+app.post('/t9', async (req, res) => {
+    try {
+      const phdData = req.body;
+    //   console.log(phdData);
+      const newPhd = new PhdModel(phdData);
+      await newPhd.save();
+      res.status(201).json({ message: 'PhD data added successfully' });
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ error: 'Internal Server Error' });
+    }
+  });
+
+app.use((req, res, next) => {
+    if (/(.ico|.js|.css|.jpg|.png|.map)$/i.test(req.path)) {
+        next();
+    } else {
+        res.header('Cache-Control', 'private, no-cache, no-store, must-revalidate');
+        res.header('Expires', '-1');
+        res.header('Pragma', 'no-cache');
+        res.sendFile(path.join(__dirname, 'build', 'index.html'));
+    }
+});
+
+(async () => {
+    await connectToDB("mongodb+srv://kletech:kletech1234@kledatabase.t7xh5su.mongodb.net/mydb?retryWrites=true&w=majority");
+    console.log('Connected to DB');
+})();
+
+app.listen(PORT, 'localhost', function () {
+    console.log(`Server is running on port ${PORT}`);
+});
