@@ -23,7 +23,7 @@ function WorkshopManager() {
   }, []);
 
   const fetchWorkshopsData = () => {
-    fetch("/workshops/all")
+    fetch(`/workshops/all/${localStorage.getItem('email')}`)
       .then((response) => response.json())
       .then((data) => {
         setWorkshopsData(data);
@@ -76,7 +76,7 @@ function WorkshopManager() {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(workshopData),
+      body: JSON.stringify({...workshopData, email : localStorage.getItem('email')}),
     })
       .then((response) => response.json())
       .then((data) => {

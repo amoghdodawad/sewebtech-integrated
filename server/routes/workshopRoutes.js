@@ -11,9 +11,10 @@ router.route("/add").options((req, res) => {
 
 router.route("/add").post(async (req, res) => {
   try {
-    const { workshopDetails, start_date, end_date } = req.body;
+    const { workshopDetails, start_date, end_date, email } = req.body;
+    console.log(req.body);
 
-    const newWorkshop = new Workshop({ workshopDetails, start_date, end_date });
+    const newWorkshop = new Workshop({ workshopDetails, start_date, end_date, email });
 
     await newWorkshop.save();
     res.json("Workshop added!");
@@ -22,9 +23,11 @@ router.route("/add").post(async (req, res) => {
   }
 });
 
-router.route("/all").get(async (req, res) => {
+router.route("/all/:email").get(async (req, res) => {
+  const email = req.params.email;
+  // console.log(req.params);
   try {
-    const workshops = await Workshop.find();
+    const workshops = await Workshop.find({ email });
     res.json(workshops);
   } catch (err) {
     res.status(400).json("Error: " + err);
