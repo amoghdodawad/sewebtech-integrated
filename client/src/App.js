@@ -132,21 +132,21 @@ function App() {
               <ConferenceParticipation />
             </Protected>
           } />
-          <Route path="/research-funding" element={
+          {/* <Route path="/research-funding" element={
             <Protected isLoggedIn={isLoggedIn} next='research-funding'>
               <ResearchFunding />
             </Protected>
-          } />
+          } /> */}
           <Route path="/workshop-management" element={
             <Protected isLoggedIn={isLoggedIn} next='workshop-management'>
               <WorkshopManager />
             </Protected>
           } />
-          <Route path="/faculty-profile" element={
+          {/* <Route path="/faculty-profile" element={
             <Protected isLoggedIn={isLoggedIn} next='faculty-profile'>
               <FacultyProfile email_id={localStorage.getItem('email')} />
             </Protected>
-          } />
+          } /> */}
           <Route path='/AllProfiles' element={
             <Protected isLoggedIn={isLoggedIn} next='AllProfiles'>
               <AllProfiles />

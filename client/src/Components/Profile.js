@@ -28,20 +28,20 @@ const Profile = () => {
 
 
             <ul className="module-links">
-                <li className="module-link">
+                {/* <li className="module-link">
                     <Link to="/faculty-profile">
                         <button>
                             <h4>Faculty Profile</h4>
                             <p>Manages personal details and qualifications of faculty members. <span style={{ fontSize: '1.5em' }}>📚</span></p>
                         </button>
                     </Link>
-                </li>
+                </li> */}
 
                 <li className="module-link">
                     <Link to="/professional-experience">
                         <button>
                             <h4>Professional Experience</h4>
-                            <p>Records and organizes the work experience of faculty members. <span style={{ fontSize: '1.5em' }}>💼</span></p>
+                            <p>Organizes and records faculty members' work experience in an efficient manner. <span style={{ fontSize: '1.5em' }}>💼</span></p>
                         </button>
                     </Link>
                 </li>
@@ -73,14 +73,14 @@ const Profile = () => {
                     </Link>
                 </li>
 
-                <li className="module-link">
+                {/* <li className="module-link">
                     <Link to="/research-funding">
                         <button>
                             <h4>Research Funding</h4>
                             <p>Manages information about funded projects undertaken by faculty members. <span style={{ fontSize: '1.5em' }}>💸</span></p>
                         </button>
                     </Link>
-                </li>
+                </li> */}
 
                 <li className="module-link">
                     <Link to="/workshop-management">

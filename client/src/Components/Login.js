@@ -90,7 +90,7 @@ function TempLogin({ changeStatus }){
                 })
                 if(response.status === 200){
                     const json = await response.json();
-                    console.log(json);
+                    // console.log(json);
                     toast.success(`Loggged in as ${json.role}`,toastOptions);
                     localStorage.setItem('name',json.name);
                     localStorage.setItem('email',json.email);
