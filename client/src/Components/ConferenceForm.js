@@ -39,6 +39,7 @@ function ConferenceForm(props) {
             const response = await fetch('/test', {
                 method: 'POST',
                 body: JSON.stringify({
+                    email : localStorage.getItem('email'),
                     id: idValue,
                     title: titleOfThePaper,
                     details_of_conferences: journalConferencesDetails,

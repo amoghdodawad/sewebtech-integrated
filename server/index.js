@@ -330,8 +330,8 @@ async function deleteConferenceById(id) {
     }
 }
 app.post('/test', async function (req, res) {
-    const { id, title, details_of_conferences, year, Awards } = req.body;
-    const emailId = 'user_email@example.com';
+    const { id, title, details_of_conferences, year, Awards, email } = req.body;
+    const emailId = email;
 
     const newConference = new Conference({
         emailId,
@@ -356,8 +356,9 @@ app.post('/test', async function (req, res) {
     }
 });
 
-app.get('/test2', async function (req, res) {
-    const emailId = 'user_email@example.com';
+app.post('/test2', async function (req, res) {
+    const emailId = req.body.email;
+    // console.log(req.body);
 
     try {
         const response = await Conference.find({ emailId });

@@ -14,8 +14,17 @@ function TableData() {
 
     const fetchData = async () => {
         try {
-            const response = await fetch('/test2');
+            const response = await fetch('/test2',{
+                method : 'POST',
+                body : JSON.stringify({
+                    email : localStorage.getItem('email')
+                }),
+                headers : {
+                    'Content-Type' : 'application/json; charset=UTF-8'
+                }
+            });
             const data = await response.json();
+            console.log(data);
             setStudentData(data);
         } catch (error) {
             console.error('Error fetching data:', error);
