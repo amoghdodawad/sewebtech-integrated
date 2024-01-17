@@ -184,6 +184,7 @@ const courseSchema = new mongoose.Schema({
         type: Number,
         default: 13,
     },
+    email : String,
     courseName: String,
     howManyTimes: Number,
     courseCode: String,
@@ -196,11 +197,17 @@ const Course = mongoose.model('courses', courseSchema);
 // Route to add courses
 app.post('/api/addCourse', async (req, res) => {
     try {
-        const courses = req.body;
+        const courses = req.body.courses;
+        const email = req.body.email;
+        console.log(req.body);
 
         // Validate input (you can add more validation as needed)
-        if (courses.every(course => course.courseName && course.howManyTimes && course.courseCode)) {
+        if (courses.every(course => {
+            course.email = email;
+            return course.courseName && course.howManyTimes && course.courseCode
+        })) {
             // Save courses to MongoDB
+            console.log(courses);
             const savedCourses = await Course.create(courses);
 
             res.json({ success: true, data: savedCourses });
@@ -213,8 +220,8 @@ app.post('/api/addCourse', async (req, res) => {
     }
 });
 
-app.put('/api/updateCourse/:id/:code', async (req, res) => {
-    const { id, code } = req.params;
+app.put('/api/updateCourse/:id/:code/:email', async (req, res) => {
+    const { id, code, email } = req.params;
     const { uname, uhmt, ucode } = req.body;
     console.log(uname, uhmt, ucode)
 
@@ -224,7 +231,7 @@ app.put('/api/updateCourse/:id/:code', async (req, res) => {
 
         // Find and update the course based on id and courseCode
         const updatedCourse = await Course.findOneAndUpdate(
-            { fId: id, courseCode: code },
+            { fId: id, courseCode: code, email },
             { courseName: uname, howManyTimes: uhmt, courseCode: ucode },
             { new: true }
         );
@@ -236,14 +243,15 @@ app.put('/api/updateCourse/:id/:code', async (req, res) => {
     }
 });
 
-app.post('/api/deleteCourse/:id/:code', async (req, res) => {
+app.post('/api/deleteCourse/:id/:code/:email', async (req, res) => {
     const id = parseInt(req.params.id);
     const code = req.params.code;
+    const email = req.params.email;
 
     // Find the index of the course in the array
     try {
         // Use async/await to make the code more readable
-        const result = await Course.deleteOne({ fId: id, courseCode: code });
+        const result = await Course.deleteOne({ fId: id, courseCode: code, email });
 
         // Check the result
         if (result.deletedCount > 0) {
@@ -258,18 +266,20 @@ app.post('/api/deleteCourse/:id/:code', async (req, res) => {
 
 });
 
-app.get('/api/getCourses', async (req, res) => {
+app.get('/api/getCourses/:email', async (req, res) => {
     const userFId = 13;
-    Course.find({ fId: userFId })
+    const email = req.params.email;
+    Course.find({ email })
         .then(courses => res.json(courses))
         .catch(err => res.json(err))
 });
 
-app.get('/api/details/:fId', (req, res) => {
+app.get('/api/details/:fId/:email', (req, res) => {
     const userfId = req.params.fId;
+    const email = req.params.email;
 
     // Check if fId exists in mock data
-    Course.find({ courseName: userfId })
+    Course.find({ courseName: userfId, email })
         .then(courses => res.json(courses))
         .catch(err => res.json(err))
 });

@@ -11,7 +11,7 @@ const DisplayCourses = () => {
 
   useEffect(() => {
     // Fetch courses data from the server
-    fetch('/api/getCourses') // Use the appropriate endpoint you've set up on your server
+    fetch(`/api/getCourses/${localStorage.getItem('email')}`) // Use the appropriate endpoint you've set up on your server
       .then((response) => response.json())
       .then((data) => setCourses(data))
       .catch((error) => console.log(error));
@@ -28,7 +28,7 @@ const DisplayCourses = () => {
   const handleUpdate = (id, code, uname, uhmt, ucode) => {
     const fkey = id + code;
     console.log(fkey);
-    fetch(`/api/updateCourse/${id}/${code}`, {
+    fetch(`/api/updateCourse/${id}/${code}/${localStorage.getItem('email')}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
@@ -50,7 +50,7 @@ const DisplayCourses = () => {
 
   const handleDelete = (id, code) => {
     if (window.confirm(`Are you sure want to delete`)) {
-      fetch(`/api/deleteCourse/${id}/${code}`, {
+      fetch(`/api/deleteCourse/${id}/${code}/${localStorage.getItem('email')}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

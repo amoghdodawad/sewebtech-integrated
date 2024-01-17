@@ -11,7 +11,7 @@ const SearchComponent = () => {
   useEffect(() => {
     // Fetch courses data from the server when fId changes
     if (formSubmitted && fId) {
-      fetch(`/api/details/${fId}`)
+      fetch(`/api/details/${fId}/${localStorage.getItem('email')}`)
         .then((response) => response.json())
         .then((data) => {
           if (data.length === 0) { // Check if the result is empty

@@ -86,7 +86,7 @@ const AddCourseForm = ({ onAddCourse }) => {
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify(courses),
+          body: JSON.stringify({courses : courses, email : localStorage.getItem('email')}),
         });
 
         const data = await response.json();
