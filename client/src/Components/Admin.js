@@ -60,7 +60,7 @@ const FetchAllFaculty = () => {
              <li className="module-link">
             <Link to={`/AllProfiles`}>
                 <button>
-                <h4>All profiles</h4>
+                <h4>All admin profiles</h4>
                 <p>Manages personal details and qualifications of faculty members.</p>
                </button>
             </Link>
@@ -70,7 +70,7 @@ const FetchAllFaculty = () => {
              <li className="module-link">
             <Link to={`/AddProfiles`}>
                 <button>
-                <h4>Add/Edit Profiles</h4>
+                <h4>All faculty profiles</h4>
                 <p>Add/ Edit details of faculty members.</p>
                </button>
             </Link>
