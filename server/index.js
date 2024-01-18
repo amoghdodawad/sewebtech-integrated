@@ -458,6 +458,119 @@ app.post('/t9', async (req, res) => {
     }
   });
 
+  const facultySchema = new mongoose.Schema({
+    name: String,
+    email: { type: String, unique: true },
+    designation: String,
+    qualification: String,
+    area_of_specialization: String,
+    address: String,
+    resi_contact_no: String,
+    mobile_no: String,
+    dob: Date,
+    AcademicPerformance: [{
+      course: String,
+      board_university: String,
+      year_of_passing: Number,
+      class_obtained: String,
+    }],
+  });
+  
+  const faculties = mongoose.model('faculties', facultySchema);
+  
+  app.get('/faculties/:email', async (req, res) => {
+    try {
+      const faculty = await faculties.findOne({ email: req.params.email });
+      if (faculty) {
+        res.json(faculty);
+      } else {
+        res.status(404).json({ message: 'Faculty not found' });
+      }
+    } catch (err) {
+      res.status(500).json({ message: 'Internal server error' });
+    }
+  });
+  
+  app.post('/add/:email', async (req, res) => {
+    try {
+      // Get email from URL parameters
+      const email = req.params.email || 'default@email.com';
+  
+      // Check if the user already exists
+      const existingUser = await faculties.findOne({ email });
+  
+      if (existingUser) {
+        res.json({ message: 'User already exists', user: existingUser });
+        return;
+      }
+  
+      // Get name from the request body or use a default value
+      const name = req.body.name || 'Default';
+  
+      // Create a new user with the provided or default values
+      const newUser = new faculties({
+        name,
+        email,
+        designation: '',
+        qualification: '',
+        area_of_specialization: '',
+        address: '',
+        resi_contact_no: '',
+        mobile_no: '',
+        dob: null,
+        AcademicPerformance: [],
+      });
+  
+      // Save the new user to the database
+      await newUser.save();
+  
+      res.json({ message: 'New user added successfully', user: newUser });
+    } catch (error) {
+      // Check if the error is a duplicate key error
+      if (error.code === 11000) {
+        res.status(400).json({ message: 'Email already exists' });
+      } else {
+        console.error('Error adding new user:', error);
+        res.status(500).json({ message: 'Internal server error' });
+      }
+    }
+  });
+  
+  
+  // ... (existing code)
+  
+  app.post('/update/:email', async (req, res) => {
+      try {
+        const { name, designation, qualification, area_of_specialization, address, resi_contact_no, mobile_no, dob } = req.body;
+    
+        const updatedData = {
+          name,
+          designation,
+          qualification,
+          area_of_specialization,
+          address,
+          resi_contact_no,
+          mobile_no,
+          dob,
+        };
+    
+        const updatedFaculty = await faculties.findOneAndUpdate(
+          { email: req.params.email },
+          { $set: updatedData },
+          { new: true }
+        );
+    
+        if (updatedFaculty) {
+          res.json({ message: 'User details updated successfully', user: updatedFaculty });
+        } else {
+          res.status(404).json({ message: 'Faculty not found' });
+        }
+      } catch (error) {
+        console.error('Error updating user details:', error);
+        res.status(500).json({ message: 'Internal server error' });
+      }
+    });
+
 app.use((req, res, next) => {
     if (/(.ico|.js|.css|.jpg|.png|.map)$/i.test(req.path)) {
         next();
