@@ -124,9 +124,9 @@ function TempLogin({ changeStatus }){
                 }}>
                     <h1 className='sign-in'>{isSignInForm ? 'Sign in' : 'Sign up'}</h1>
                     <div className='input-container'>
-                        {!isSignInForm && <input ref={name} type='text' placeholder='Full name' className='input'></input>}
-                        <input ref={email} type='text' placeholder='Email address' className='input'></input>
-                        <input ref={password} type='password' placeholder='Password' className='input'></input>
+                        {!isSignInForm && <input ref={name} type='text' placeholder='Full name' className='input' required></input>}
+                        <input ref={email} type='text' placeholder='Email address' className='input' required></input>
+                        <input ref={password} type='password' placeholder='Password' className='input' required></input>
                         {!isSignInForm && <div className='checkbox'>
                             <label htmlFor='admin-input' id=''>Sign up as admin?</label>
                             <input type='checkbox' id='admin-input' onChange={()=>{
